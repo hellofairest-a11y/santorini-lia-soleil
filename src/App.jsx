@@ -247,10 +247,15 @@ function Contact() {
               <div className="form-field"><label className="form-label">Preferred suite</label><select className="form-input form-select"><option>Select a suite</option><option>Rhodes (Studio Deluxe)</option><option>Hydra (Studio Premium)</option><option>Asteria (1-Bedroom)</option><option>Mykonos (2-Bedroom)</option></select></div>
               <div className="form-field"><label className="form-label">Check-in</label><input type="date" className="form-input" /></div>
               <div className="form-field"><label className="form-label">Check-out</label><input type="date" className="form-input" /></div>
+            </div>
+            <div className="form-row-3">
               <div className="form-field"><label className="form-label">Adults</label><input type="number" min="1" max="8" defaultValue="1" className="form-input" /></div>
               <div className="form-field"><label className="form-label">Children</label><input type="number" min="0" max="8" defaultValue="0" className="form-input" /></div>
-              <div className="form-field form-full"><label className="form-label">Pets</label><input type="number" min="0" max="10" defaultValue="0" className="form-input" /></div>
-              <div className="form-field form-full"><label className="form-label">Message (optional)</label><textarea rows={3} placeholder="Any special requests..." className="form-input form-textarea" /></div>
+              <div className="form-field"><label className="form-label">Pets</label><input type="number" min="0" max="10" defaultValue="0" className="form-input" /></div>
+            </div>
+            <div style={{ marginTop: 12 }}>
+              <label className="form-label">Message (optional)</label>
+              <textarea rows={3} placeholder="Any special requests..." className="form-input form-textarea" />
             </div>
             <button onClick={() => { const f = document.querySelectorAll('#contact input, #contact select, #contact textarea'); let b = ''; f.forEach(function(el) { if(el.value && el.value !== 'Select a suite' && el.value !== '0') b += (el.previousSibling ? el.previousSibling.textContent : '') + ': ' + el.value + '\n'; }); window.open('mailto:santoriniliasoleil@gmail.com?subject=Booking Inquiry — Santorini Lia Soleil&body=' + encodeURIComponent(b)); setSent(true); }} className="btn btn-navy btn-full">Send Inquiry</button>
           </div>
@@ -330,14 +335,14 @@ export default function App() {
         .hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
         /* BUTTONS */
-        .btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:14px 32px;border-radius:2px;text-decoration:none;display:inline-block;transition:transform .25s,box-shadow .25s,background .25s;cursor:pointer;border:none}
-        .btn:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(0,0,0,0.12)}
-        .btn:active{transform:translateY(0);box-shadow:none}
-        .btn-white{background:${C.w};color:${C.navy}}
+        .btn{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;padding:14px 32px;border-radius:2px;text-decoration:none;display:inline-block;transition:all .3s ease;cursor:pointer;border:none}
+        .btn:active{transform:translateY(0)}
+        .btn-white{background:${C.w};color:${C.navy};border:1.5px solid ${C.w}}
+        .btn-white:hover{background:${C.navy};color:${C.w};border-color:${C.w}}
         .btn-ghost{background:transparent;color:${C.w};border:1.5px solid rgba(255,255,255,0.4)}
-        .btn-ghost:hover{border-color:rgba(255,255,255,0.7)}
-        .btn-navy{background:${C.navy};color:${C.w}}
-        .btn-navy:hover{box-shadow:0 4px 16px rgba(30,58,95,0.3)}
+        .btn-ghost:hover{background:${C.w};color:${C.navy};border-color:${C.w}}
+        .btn-navy{background:${C.navy};color:${C.w};border:1.5px solid ${C.navy}}
+        .btn-navy:hover{background:${C.w};color:${C.navy}}
         .btn-full{display:block;width:100%;text-align:center;margin-top:18px}
 
         /* SECTION HEADERS */
@@ -355,7 +360,8 @@ export default function App() {
         .suite-label{font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:${C.gold};margin-bottom:8px}
         .suite-name{font-family:'IM Fell English',serif;font-size:30px;font-style:italic;color:${C.navy};margin:0 0 6px}
         .suite-tag{font-family:'DM Sans',sans-serif;font-size:13px;color:${C.tx};margin:0 0 18px;line-height:1.65}
-        .suite-specs{display:flex;gap:16px;flex-wrap:wrap;font-family:'DM Sans',sans-serif;font-size:12px;color:${C.tx};margin-bottom:18px}
+        .suite-specs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+        .suite-specs span{font-family:'DM Sans',sans-serif;font-size:11px;color:${C.tx};padding:5px 12px;background:${C.off};border-radius:20px;border:1px solid ${C.ln}}
         .suite-prices{display:flex;gap:20px;align-items:baseline;margin-bottom:6px}
         .suite-price{font-family:'IM Fell English',serif;font-size:24px;color:${C.navy}}
         .suite-per{font-family:'DM Sans',sans-serif;font-size:10px;color:${C.tx};margin-left:4px}
@@ -391,6 +397,7 @@ export default function App() {
         /* FORM */
         .form-box{background:${C.off};padding:28px 24px;border-radius:3px;border:1px solid ${C.ln}}
         .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+        .form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px}
         .form-full{grid-column:1/-1}
         .form-label{font-family:'DM Sans',sans-serif;font-size:10.5px;font-weight:500;color:${C.tx};margin-bottom:4px;display:block}
         .form-input{font-family:'DM Sans',sans-serif;font-size:13px;color:${C.navy};padding:11px 13px;border:1px solid ${C.ln};border-radius:2px;background:${C.w};outline:none;width:100%;box-sizing:border-box;transition:border-color .2s}
@@ -436,6 +443,7 @@ export default function App() {
           .amenities-grid{grid-template-columns:1fr}
 
           .form-grid{grid-template-columns:1fr}
+          .form-row-3{grid-template-columns:1fr}
           .form-box{padding:22px 18px}
 
           .map-wrap{height:240px}
